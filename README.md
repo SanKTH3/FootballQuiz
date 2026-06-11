@@ -90,7 +90,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 - Go to the project directory:
 
 ```bash
-cd bsehgal-htri-karimha-sanmo-vt26-project
+cd "foldername"
 ```
 
 - Install dependencies:
