@@ -167,10 +167,9 @@ All .css files take care of styling in their appropriate pages
 - styleShared.css
 ## Team / Authors
 
-Haralampos
+San K
 
-Karim
+Groupmember 2
 
-San
+Groupmember 3
 
-Bhavya
