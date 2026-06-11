@@ -2,6 +2,13 @@
 
 Welcome to **Football Quiz** a game where you test your football knowledge by trying to identify the mystery player before your guesses run out.
 
+## Preview
+Demo Video
+
+Watch the full demo here:
+
+https://youtu.be/xeDHqUL_0x8
+
 ## About the Game
 
 The game selects a football player from the **top 5 leagues** which include: Premier League, Serie A, La Liga, Bundesliga, and Ligue 1. The goal is to guess who the player is.
