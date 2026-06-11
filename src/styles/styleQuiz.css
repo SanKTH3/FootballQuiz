@@ -1,0 +1,872 @@
+/* =========================================
+   2. QUIZ PAGE
+   ========================================= */
+.quizPage {
+  background-color: #0d131a;
+  min-height: 100vh;
+  font-family: "Jersey 25", sans-serif;
+  color: #a0aec0;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #131b24;
+  border-bottom: 1px solid #2d3748;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.login-button {
+  background-color: #f6ad55;
+  color: #1a202c;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #a0aec0;
+  border: 1px solid #4a5568;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.quiz-layout-container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 40px auto;
+  gap: 30px;
+}
+
+.left-panel-card {
+  flex: 0 0 20%;
+  background-color: #131b24;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  height: fit-content;
+}
+
+.lheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #2d3748;
+  padding-bottom: 10px;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.lheader h3 {
+  margin: 0;
+  color: #e2e8f0;
+  letter-spacing: 2px;
+}
+
+.lheader span {
+  font-size: 0.75rem;
+  color: #718096;
+  letter-spacing: 1px;
+}
+
+.player-photo-card {
+  width: 100%;
+  height: 300px;
+  background-color: #0b0f15;
+  border: 1px dashed #4a5568;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  color: #2d3748;
+  transition: filter 0.5s ease;
+  position: relative;
+}
+
+.player-photo-card::before {
+  content: "⌜";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #f6ad55;
+  font-size: 1.5rem;
+}
+.player-photo-card::after {
+  content: "⌟";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #f6ad55;
+  font-size: 1.5rem;
+}
+
+.player-photo-card.blurred {
+  filter: blur(12px);
+}
+.player-photo-card.revealed {
+  filter: blur(0px);
+}
+
+.hints-section h4 {
+  color: #718096;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.hint-box {
+  background-color: #1a202c;
+  border: 1px solid #2d3748;
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.hint-box.blurred {
+  filter: blur(4px);
+  cursor: pointer;
+}
+.hint-box.revealed {
+  filter: blur(0);
+  color: #e2e8f0;
+  border-color: #f6ad55;
+}
+.hint-arrow{
+    display: inline-block;
+    margin-left: 6px;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+}
+
+.hint-arrow.up{
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #fc8181;
+}
+
+.hint-arrow.down{
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #fc8181;
+}
+
+/* =========================================
+   4. RIGHT PANEL (Guesses & Input)
+   ========================================= */
+.right-panel-guesses {
+  flex: 0 0 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guess-tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #131b24;
+  padding: 15px 20px;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+}
+
+.progress-bars {
+  display: flex;
+  gap: 10px;
+}
+
+.progress-dot {
+  width: 30px;
+  height: 8px;
+  background-color: #2d3748;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.progress-dot.filled {
+  background-color: #ada9a0;
+}
+
+.guesses-left-text {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #a0aec0;
+}
+
+/* SEARCH BAR */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 45px 16px 45px; 
+  background-color: #131b24;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: "Jersey 25", sans-serif;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-sizing: border-box; 
+}
+
+.input-action-container {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  pointer-events: none; 
+}
+
+.input-action-container img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+}
+
+.enter-icon {
+  font-size: 1.5rem;
+  color: #4a5568;
+  font-family: monospace;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #f6ad55;
+
+  box-shadow:
+    0 0 0 2px rgba(246, 173, 85, 0.25),
+    0 0 12px rgba(246, 173, 85, 0.35);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+}
+
+.suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  background: #1a202c;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: suggestionPop 0.2s ease;
+  transform-origin: top;
+}
+
+.suggestions li {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #2d3748;
+  color: #e2e8f0;
+  font-family: "Jersey 25", sans-serif;
+  text-transform: uppercase;
+  animation: suggestionPop 0.25s ease;
+}
+
+.suggestions li {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s;
+}
+
+.suggestions li:hover {
+  transform: scale(1.03);
+}
+.suggestions li:hover,
+.suggestions li.highlighted-item {
+  background-color: #2d3748;
+  color: white;
+}
+
+/* GUESS CARD STYLING */
+.guesses-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.guess_box {
+  background-color: #131b24;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: cardPop 0.25s ease;
+}
+
+.guess_box_history {
+  /* will add css that  */
+  border-style: solid;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: white;
+}
+
+.guess_box.correct-guess-glow {
+  animation:
+    cardPop 0.25s ease,
+    goldGlow 2s ease-in-out infinite 0.25s;
+}
+
+.guessed-name-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guess-number {
+  color: #718096;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-family: "Jersey 15", sans-serif;
+}
+
+.guessed-name {
+  color: #e2e8f0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.guess-attributes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.attr-box {
+  flex: 1;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  background-color: #0b0f15;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+  gap: 5px;
+  opacity: 0;
+  animation: attrFade 0.2s ease forwards;
+}
+
+.attr-box:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.attr-box:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.attr-box:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.attr-box:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.attr-box:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.attr-box:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.attr-box span {
+  font-size: 0.65rem;
+  color: #718096;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.attr-box strong {
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+/* CORRECT / WRONG  */
+.correct_property {
+  border-color: #38a169;
+  background-color: rgba(56, 161, 105, 0.1);
+}
+.correct_property strong {
+  color: #48bb78;
+}
+
+.wrong_property {
+  border-color: #e53e3e;
+  background-color: rgba(229, 62, 62, 0.1);
+}
+.wrong_property strong {
+  color: #fc8181;
+}
+
+@keyframes goldGlow {
+  0% {
+    box-shadow: 0 0 4px rgba(255, 187, 0, 0.2);
+    border-color: #ffbb00;
+  }
+
+  50% {
+    box-shadow:
+      0 0 16px rgba(255, 187, 0, 0.9),
+      0 0 30px rgba(255, 187, 0, 0.6),
+      0 0 45px rgba(255, 187, 0, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 6px rgba(255, 187, 0, 0.3);
+    border-color: #ffbb00;
+  }
+}
+
+.correct-guess-glow {
+  border: 1px solid #ffbb00;
+  background-color: rgba(255, 187, 0, 0.05);
+  animation: goldGlow 2s ease-in-out infinite;
+}
+
+.victory-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #22252a;
+  border: 1px solid #ffbb00;
+  border-radius: 8px;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: attrFade 0.4s ease forwards;
+}
+
+.victory-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.victory-trophy {
+  color: #dfb241;
+  width: 36px;
+  height: 36px;
+}
+
+.victory-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.victory-text-group h2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.victory-text-group p {
+  margin: 0;
+  color: #8c95a1;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+.play-again-btn {
+  background-color: #dfb241;
+  color: #111111;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 1.3rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.play-again-btn:hover {
+  background-color: #cda23a;
+}
+
+.play-again-btn:active {
+  transform: scale(0.97);
+}
+
+.failure-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #22252a;
+  border: 1px solid #e53e3e;
+  border-radius: 8px;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: attrFade 0.4s ease forwards;
+}
+
+.failure-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.failure-icon {
+  color: #e53e3e;
+  width: 36px;
+  height: 36px;
+}
+
+.failure-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.failure-text-group h2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.failure-text-group p {
+  margin: 0;
+  color: #8c95a1;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+.play-again-btn.failure {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.play-again-btn.failure:hover {
+  background-color: #c53030; 
+}
+
+.search-and-spinner-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.search-wrapper {
+  flex-grow: 1;
+  position: relative;
+}
+
+.inline-suspense-container {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.inline-suspense-container img,
+.inline-suspense-container svg,
+.inline-suspense-container div {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Top bar for login/logout UI */
+.auth-bar {
+    width: 100%;
+    padding: 12px 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+
+    box-sizing: border-box;
+}
+
+.auth-bar button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.quiz-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 12px;
+  background: rgba(19, 27, 36, 0.5);
+  border-radius: 12px;
+  border: 1px solid #2d3748;
+}
+
+.points-orb-container {
+  flex: 0 0 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@property --score {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.points-ring {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background: conic-gradient(
+    #ffbb00 calc(var(--score) * 1%), 
+    #2d3748 0
+  );
+  transform: scale(calc(0.85 + (var(--score) / 666)));
+
+  transition: --score 1s ease-out, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 15px rgba(255, 187, 0, 0.1);
+}
+.points-inner-content {
+  width: 63px;
+  height: 63px;
+  background-color: #131b24; 
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.orb-label {
+  font-size: 0.55rem;
+  color: #718096;
+  font-family: monospace;
+}
+
+.orb-value {
+  font-size: 2.3rem;
+  color: #ffbb00;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.quiz-actions-row .play-again-btn {
+  flex: 1;
+  height: 48px;
+}
+/*
+.player-select {
+  width: 100%;
+}
+
+.player-select__control {
+  min-height: 48px;
+  border-radius: 12px;
+}
+
+.player-select__menu {
+  z-index: 20;
+}*/
+
+/* react-select styled to match old quiz search bar */
+.player-select {
+  width: 100%;
+}
+
+/* main input area */
+.player-select__control {
+  width: 100% !important;
+  min-height: unset !important;
+
+  background-color: #131b24 !important;
+  border: 1px solid #2d3748 !important;
+  border-radius: 8px !important;
+
+  color: #e2e8f0 !important;
+
+  font-size: 1rem !important;
+  letter-spacing: 1px !important;
+  font-family: "Jersey 25", sans-serif !important;
+  text-transform: uppercase !important;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+
+  box-sizing: border-box !important;
+
+  box-shadow: none !important;
+
+  padding: 6px 45px 6px 45px !important;
+}
+
+/* focus effect copied from old search-input */
+.player-select__control--is-focused {
+  outline: none !important;
+  border-color: #f6ad55 !important;
+
+  box-shadow:
+    0 0 0 2px rgba(246, 173, 85, 0.25),
+    0 0 12px rgba(246, 173, 85, 0.35) !important;
+}
+
+/* remove blue hover */
+.player-select__control:hover {
+  border-color: #f6ad55 !important;
+}
+
+/* keep search icon visible */
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* text inside input */
+.player-select__value-container {
+  padding-left: 0px !important;
+}
+
+.player-select__input-container,
+.player-select__single-value,
+.player-select__placeholder {
+  color: #e2e8f0 !important;
+  font-size: 1rem !important;
+  font-family: "Jersey 25", sans-serif !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+.player-select__placeholder {
+  color: #718096 !important;
+}
+
+/* dropdown menu */
+.player-select__menu {
+  background: #1a202c !important;
+  border: 1px solid #2d3748 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  overflow-x: hidden !important;
+  z-index: 10 !important;
+
+  animation: suggestionPop 0.2s ease;
+  transform-origin: top;
+}
+
+.player-select__menu-list {
+  overflow-x: hidden !important;
+}
+
+/* dropdown items */
+.player-select__option {
+  padding: 12px 16px !important;
+
+  color: #e2e8f0 !important;
+  background: #1a202c !important;
+
+  font-family: "Jersey 25", sans-serif !important;
+  text-transform: uppercase !important;
+
+  cursor: pointer !important;
+
+  transition: background-color 0.2s !important;
+
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+.player-select__option--is-focused {
+  background-color: #2d3748 !important;
+  color: white !important;
+}
+
+/* remove hover scaling that caused horizontal scrolling */
+.player-select__option:hover {
+  transform: none;
+}
+
+/* remove separator */
+.player-select__indicator-separator {
+  display: none;
+}
+
+/* remove dropdown arrow */
+.player-select__dropdown-indicator {
+  display: none !important;
+}

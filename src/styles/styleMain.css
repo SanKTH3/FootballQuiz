@@ -1,0 +1,160 @@
+.immersive-dark {
+  min-height: 100vh;
+  padding: 60px 40px;
+  background: radial-gradient(circle at 70% 30%, #1a2531 0%, #0d131a 100%);
+  color: #e2e8f0;
+  font-family: "Jersey 25", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.split-hero {
+  max-width: 1400px; 
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text-content {
+  flex: 0 0 40%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.main-game-title {
+  font-size: 6.5rem;
+  margin: 10px 0 20px 0;
+  line-height: 0.9;
+  color: #ffffff;
+}
+
+.gold-accent {
+  color: #FFBB00;
+}
+
+.hero-image-container-raw {
+  flex: 0 0 60%; 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  animation: cardPop 0.8s ease-out;
+}
+
+.players-image-large {
+  width: 110%;
+  max-width: 850px; 
+  height: auto;
+  display: block;
+  
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  
+  filter: drop-shadow(0 500px 30px rgba(0,0,0,0.5));
+}
+
+.premium-cta-button {
+  background-color: #FFBB00;
+  color: #111111;
+  border: none;
+  border-radius: 4px;
+  padding: 18px 45px;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.premium-cta-button:hover {
+  transform: scale(1.05);
+  background-color: #e6a800;
+}
+
+/* INFO GRID STYLING */
+.clean-cards {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.minimalist_box {
+  background-color: rgba(19, 27, 36, 0.7); 
+  border: 1px solid rgba(255, 187, 0, 0.2);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 
+              0 0 15px rgba(255, 187, 0, 0.05);
+}
+
+.minimalist_box:hover {
+  transform: translateY(-8px);
+  border-color: #FFBB00;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 
+              0 0 25px rgba(255, 187, 0, 0.2);
+}
+
+.minimalist_box h3 {
+  font-family: "Jersey 25", sans-serif; 
+  color: #FFBB00;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.minimalist_box p {
+    font-family: monospace;
+    text-transform: uppercase;
+
+  color: #cbd5e0;
+  line-height: 1.6;
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .split-hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-text-content {
+    align-items: center;
+    text-align: center;
+    flex: none;
+  }
+  .hero-image-container-raw {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+  }
+  .players-image-large {
+    width: 100%;
+  }
+  .main-game-title {
+    font-size: 4rem;
+  }
+}
